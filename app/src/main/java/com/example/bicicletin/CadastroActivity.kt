@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bicicletin.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 
 class CadastroActivity : AppCompatActivity() {
 
@@ -65,7 +66,18 @@ class CadastroActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                            finish() // Volta para o login
+
+                            // Salva o nome no Firebase para aparecer no perfil
+                            val nome = nomeEdt.text.toString().trim()
+                            val usuario = auth.currentUser
+                            if (nome.isNotEmpty() && usuario != null) {
+                                val pedido = UserProfileChangeRequest.Builder()
+                                    .setDisplayName(nome)
+                                    .build()
+                                usuario.updateProfile(pedido).addOnCompleteListener { finish() }
+                            } else {
+                                finish() // Volta para o login
+                            }
                         } else {
                             Toast.makeText(this, "Erro no cadastro: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                         }

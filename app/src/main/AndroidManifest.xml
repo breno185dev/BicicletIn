@@ -26,6 +26,17 @@
             android:name=".com.example.bicicletin.CadastroActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Telas do perfil (pasta "perfil") -->
+        <activity
+            android:name=".perfil.PerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".perfil.DadosPessoaisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".perfil.PagamentoActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bicicletin.R
+import com.example.bicicletin.perfil.PerfilActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.jvm.java
 
@@ -43,7 +44,9 @@ class MainActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             Toast.makeText(this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT)
                                 .show()
-                            // TODO: Mudar para a tela principal/home do app
+                            // Abre a tela de perfil (pasta "perfil")
+                            startActivity(Intent(this, PerfilActivity::class.java))
+                            finish()
                         } else {
                             Toast.makeText(
                                 this,
